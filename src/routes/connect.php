@@ -1,0 +1,6 @@
+<?php
+$server ="jylling.dk.mysql";
+$brugernavn="jylling_dk"; 
+$password ="svanemosen41!";
+$db_navn="jylling_dk";
+?>

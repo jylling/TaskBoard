@@ -1,0 +1,340 @@
+@import 'tailwindcss';
+
+		:root {
+		--bg-board: rgba(245, 245, 245, 0.9);
+		--bg-column: rgba(245, 245, 245, 0.9);
+		--bg-column-title: rgba(164, 168, 164, 0.8);
+		--bg-card: rgba(255, 255, 255, 0.95);
+
+		--text-main: #1f2937;
+		--text-sub: #4b5563;
+
+		--tag-bg: #e5e7eb;
+		--tag-text: #374151;
+
+		--accent: #3b82f6;
+		--danger: #b91c1c;
+		--border: #e5e7eb;
+	}
+
+/* 	.dark {
+		--bg-board: #0f172a;
+		--bg-column: #1e293b;
+		--bg-column-title: #334155;
+		--bg-card: #0b1220;
+
+		--text-main: #e5e7eb;
+		--text-sub: #9ca3af;
+
+		--tag-bg: #1f2937;
+		--tag-text: #cbd5f5;
+
+		--accent: #60a5fa;
+		--danger: #f87171;
+		--border: #334155;
+	} */
+
+	
+ 	.dark {
+		--bg-board: #0b0b0b;
+		--bg-column: #17171b;
+		--bg-column-title: #1e1e20;
+		--bg-card: #0d2230;
+
+		--text-main: #e5e7eb;
+		--text-sub: #9ca3af;
+
+		--tag-bg: #1f2937;
+		--tag-text:#374151;
+
+		--accent: #60a5fa;
+		--danger: #f87171;
+		--border: #334155;
+	} 
+	
+
+/* 	*,
+	*::before,
+	*::after {
+  		transition:
+    	background-color 0.4s ease,
+    	color 0.4s ease,
+    	border-color 0.4s ease,
+    	box-shadow 0.4s ease,
+    	fill 0.4s ease,
+    	stroke 0.4s ease;
+	}
+ */
+
+ *,
+*::before,
+*::after {
+  transition:
+    background-color .35s ease,
+    color .35s ease,
+    border-color .35s ease;
+}
+
+	.light-btn {
+	background: #e5e7eb;
+	color: #1f2937;
+	border: 1px solid #cbd5f5;
+	}
+
+	.dark-btn {
+	background: #0b1220;
+	color: #cbd5f5;
+	border: 1px solid #334155;
+	}
+
+	.add-card {
+		padding: 0 0 0 0;
+		background-color: rgba(245, 245, 245, 0);
+		cursor: pointer;
+		text-align: center;
+	}
+
+	.board {
+		display: flex;
+		align-items: flex-start;
+		min-height: calc(100vh - 5em);
+		overflow-x: auto;
+		/* 	background: url('bamboo.jpg') no-repeat center / cover fixed; */
+		font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+		background: var(--bg-board);
+		color: var(--text-main);
+	}
+
+	.column {
+		flex: 0 0 275px;
+		margin: 1.5em;
+
+		display: flex;
+		flex-direction: column;
+		overflow-x: auto;
+		padding: 0.7em 0.7em 2em 0.7em;
+		background-color: var(--bg-column);
+		color: var(--text-main);
+		max-height: calc(100vh - 10em);
+		height: auto;
+		transition: none !important;
+		will-change: transform;
+		overflow-y: auto;
+		
+	}
+
+	.column-title {
+		position: sticky;
+		top: 0;
+		z-index: 10;
+
+		padding: 12px 16px;
+		font-weight: 500;
+		backdrop-filter: blur(6px);
+		background-color: var(--bg-column-title);
+		color: var(--text-main);
+		-moz-border-radius: 0px;
+		-webkit-border-radius: 3px 3px 0px 0px;
+		border-radius: 3px 3px 0px 0px;
+
+	}
+
+	.column-content {
+		flex: 1;
+		min-height: 8em;
+		padding-top: 10px; 
+		/* Notice that the scroll container needs to be the dndzone if you want dragging near the edge to trigger scrolling */
+		/* overflow-y: scroll;  */
+	}
+
+	
+
+	.card {
+		will-change: transform;
+		backdrop-filter: blur(4px);
+		position: relative;
+
+		border-radius: 12px;
+		padding: 14px 16px 12px;
+		margin-bottom: 12px;
+		margin-right: 6px;
+		box-shadow:
+			0 2px 6px rgba(0, 0, 0, 0.06),
+			0 8px 20px rgba(0, 0, 0, 0.04);
+		cursor: pointer;
+		background-color: var(--bg-card);
+		color: var(--text-main);
+		transition: none !important;
+		will-change: transform;
+	}
+
+	.card-header {
+		margin-bottom: 6px;
+		color: var(--text-main);
+	}
+
+	.card-title {
+		font-size: 0.95rem;
+		font-weight: 600;
+		color: #1f2937;
+		line-height: 1.3;
+		margin: 0;
+		color: var(--text-main);
+	}
+
+	.card-text {
+		font-size: 0.8rem;
+		color: var(--text-main);
+		line-height: 1.4;
+		margin: 6px 0 10px;
+	}
+
+	.card-footer {
+		display: flex;
+		justify-content: flex-start;
+	}
+
+	.card-tag {
+		font-size: 0.7rem;
+		padding: 2px 8px;
+		border-radius: 999px;
+		/*background: var(--tag-bg);  */
+		color: var(--tag-text);
+		font-weight: 700;
+	}
+
+	/* Delete button */
+
+	.card-delete {
+		position: absolute;
+		top: 6px;
+		right: 6px;
+		width: 22px;
+		height: 22px;
+		border-radius: 50%;
+		border: none;
+		background: transparent;
+		color: #9ca3af;
+		font-size: 14px;
+		cursor: pointer;
+		transition:
+			background 0.15s ease,
+			color 0.15s ease;
+	}
+
+	.card-delete:hover {
+		background: #fee2e2;
+		color: #b91c1c;
+	}
+
+	.col-botton {
+		position: absolute;
+		top: 12px;
+		right: 4px;
+		width: 18px;
+		height: 18px;
+		border: none;
+		background: transparent;
+		color: blue;
+		font-size: 14px;
+		cursor: pointer;
+		anchor-name: --colmenu-botton;
+		transition:
+			background 0.15s ease,
+			color 0.15s ease;
+	}
+
+	.colmenu {
+		width: max-content;
+		padding: 1em;
+		border: solid 1px gray ;
+		border-radius: .5em;
+		background: var(--bg-board);
+		position: absolute;
+		position-anchor: menu-bottom;
+		top: anchor(bottom);
+		left: anchor(left);
+		position-try-fallbacks: --below-right, --below-left;
+		font-weight: 200;
+	}
+
+	.colmenu a {
+		text-decoration: none;
+		padding: .7em 1.5em;
+		border-radius: .25em;
+		color: var(--text-main);
+	}
+
+	.colmenu a:hover{
+		background: #d2d1d1;
+	}
+
+	.colmenu:popover-open {
+		display: grid;
+		background: var(--bg-board);
+	}
+
+		@position-try --below-right {
+					inset: unset;
+					top: anchor(bottom);
+					right: anchor(left);
+				}
+
+		@position-try --below-left {
+					inset: unset;
+					top: anchor(bottom);
+					right: anchor(right);
+				}
+
+
+	:global(.dndDragging::before) {
+		pointer-events: none;
+		transform: rotate(1deg) scale(1.03);
+	}
+
+	:global(.dndDragging:focus),
+	:global(.dndDragging:focus-visible) {
+		outline: none !important;
+		border: none !important;
+	}
+	body {
+		margin: 0;
+		min-height: 100vh;
+		background-color: var(--bg-board);
+	}
+
+	.modal-backdrop {
+    	position: fixed;
+  		inset: 0;
+		background: rgba(15, 23, 42, 0.6);
+		display: flex;
+		justify-content: center;
+		align-items: flex-start;
+		padding-top: 10em;
+		z-index: 50;
+}
+
+.modal {
+  width: 640px;
+  background: var(--bg-card);
+  color: var(--text-main);
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 20px 40px rgba(0,0,0,.5);
+}
+
+.modal-input, .modal-textarea {
+  width: 100%;
+  margin: 10px 0;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: inherit;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
